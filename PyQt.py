@@ -1,6 +1,6 @@
 import socket
 
-from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6 import QtCore, QtWidgets
 
 
 
@@ -46,23 +46,23 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    # Add Item To List
+
     def add_it(self):
 
         item = self.additem_lineEdit.text()
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # создаем сокет
         sock.connect(('localhost', 55000))  # подключемся к серверному сокету
         sock.send(f'{item} + add'.encode())
-        # Add item to list
+
         self.mylist_listWidget.addItem(item)
 
-        # Clear the item box
+
         self.additem_lineEdit.setText("")
 
 
-    # Delete Item From List
+
     def delete_it(self):
-        # Grab the selected row or current row
+
         clicked = self.mylist_listWidget.currentRow()
 
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # создаем сокет
@@ -71,7 +71,7 @@ class Ui_MainWindow(object):
         # Delete selected row
         self.mylist_listWidget.takeItem(clicked)
 
-    # Clear All Items From List
+
     def clear_it(self):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # создаем сокет
         sock.connect(('localhost', 55000))  # подключемся к серверному сокету
